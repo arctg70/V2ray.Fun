@@ -6,7 +6,7 @@ import commands
 
 
 def getip():
-    myip = urllib2.urlopen('https://cn.fdos.me/ip.php').read()
+    myip = urllib2.urlopen('https://ident.me').read()
     myip = myip.strip()
     return str(myip)
 
