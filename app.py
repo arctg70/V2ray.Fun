@@ -258,7 +258,8 @@ def gen_ssl():
 
 
 with open("v2ray.config") as f:
-    data = json.loads(f)
+   data = f.read()
+   data = json.loads(data)
 
 if data['tls'] == "on" and panel_config['use_ssl'] == "on":
     key_file = "/root/.acme.sh/{0}/{0}.key".format(data['domain'],
