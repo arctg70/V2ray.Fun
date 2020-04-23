@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>V2ray.fun - 订阅配置</title>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/static/css/mdui.min.css">
+    <script src="/static/js/mdui.min.js"></script>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-light-blue mdui-loaded mdui-drawer-body-left">
+
+<header class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+        <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer', swipe: true}">
+            <i class="mdui-icon material-icons">menu</i></span>
+        <a href="./" class="mdui-typo-headline mdui-hidden-xs">V2ray.fun</a>
+        <a href="" class="mdui-typo-title">订阅配置</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <a href="https://github.com/FunctionClub/" target="_blank" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+           mdui-tooltip="{content: 'Github'}">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36"
+                 enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-icon" style="width: 24px;height:24px;">
+        <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
+	c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
+	c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
+	c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
+	c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
+	c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
+      </svg>
+        </a>
+    </div>
+</header>
+
+<div class="mdui-drawer" id="main-drawer">
+    <div class="mdui-list" mdui-collapse="{accordion: true}">
+        <div class="mdui-collapse-item mdui-collapse-item-open">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">near_me</i>
+                <div class="mdui-list-item-content">控制面板</div>
+                <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+            </div>
+            <div class="mdui-collapse-item-body mdui-list">
+                <a href="index.html" class="mdui-list-item mdui-ripple">运行状态</a>
+                <a href="config.html" class="mdui-list-item mdui-ripple">修改连接</a>
+                <a href="subscribe.html" class="mdui-list-item mdui-ripple  mdui-list-item-active">订阅配置</a>
+                <a href="app.html" class="mdui-list-item mdui-ripple">软件下载</a>
+                <a href="log.html" class="mdui-list-item mdui-ripple">运行日志</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    <div class="mdui-container">
+        <p></p>
+        <div class="mdui-row">
+                <div class="mdui-table-fluid">
+                    <table class="mdui-table">
+                        <thead>
+                        <tr>
+                            <th>参数</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>运行控制</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-3">
+                                        <div class="mdui-chip" onclick="start_service()">
+                                            <span class="mdui-chip-icon mdui-color-green"><i class="mdui-icon material-icons">play_arrow</i></span>
+                                            <span class="mdui-chip-title">启动</span>
+                                        </div>
+                                    </div>
+                                    <div class="mdui-col-md-3">
+                                        <div class="mdui-chip" onclick="stop_service()">
+                                            <span class="mdui-chip-icon mdui-color-red"><i class="mdui-icon material-icons">stop</i></span>
+                                            <span class="mdui-chip-title">停止</span>
+                                        </div>
+                                    </div>
+                                    <div class="mdui-col-md-3">
+                                        <div class="mdui-chip" onclick="restart_service()">
+                                            <span class="mdui-chip-icon mdui-color-yellow-700"><i class="mdui-icon material-icons">settings_backup_restore</i></span>
+                                            <span class="mdui-chip-title">重启</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </td>
+                        </tr>
+						<tr>
+                            <td>订阅网址</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <input id="node_subscribe" class="mdui-textfield-input" type="text" placeholder="请输入订阅的网址" value=""/>
+                                    </div>
+                                    <div class="mdui-col-md-2"></div>
+                                    <div class="mdui-col-md-1">
+
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>验证码</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <input id="node_code" class="mdui-textfield-input" type="text" placeholder="请输入订阅的验证码" value=""/>
+                                    </div>
+                                    <div class="mdui-col-md-2"></div>
+                                    <div class="mdui-col-md-1">
+                                        <button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple"
+                                                onclick="change_subscribe()">更新订阅</button>
+                                    </div>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    <tr>
+                        <td>最近一次订阅</td>
+                        <td id="subscribe_log"></td>
+                    </tr>
+					<tr>
+                        <td>自动更新订阅
+						     <i class="mdui-icon material-icons mdui-text-color-grey-400" mdui-dialog="{target: '#auto_update-helper'}">info</i>
+                                <div class="mdui-dialog" id="auto_update-helper">
+                                    <div class="mdui-dialog-title">自动更新订阅说明</div>
+                                    <div class="mdui-dialog-content">
+                                        <b>在开启前请先设置正确的订阅网址和验证码</b><br>
+										<b>开启后，每周检查一次是否有订阅更新，如果有则自动更新订阅</b><br>
+										<b>开启后，每次系统启动都将自动更新订阅</b><br>
+                                    </div>
+                                    <div class="mdui-dialog-actions">
+                                        <button class="mdui-btn mdui-ripple" mdui-dialog-close="">确认</button>
+                                    </div>
+                                </div>
+						</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <input id="set_auto_update" class="mdui-textfield-input" readonly="readonly" type="text" value=""/>
+                                    </div>
+                                    <div class="mdui-col-md-2">
+										<button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple"
+                                                onclick="open_auto_update()">开启</button></div>
+                                    <div class="mdui-col-md-1">
+                                        <button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple"
+                                                onclick="stop_auto_update()">关闭</button>
+                                    </div>
+                                </div>
+                            </td>
+                    </tr>
+                    <tr>
+                        <tr>
+                            <td>切换服务器节点</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <form id="node_form" action="##">
+                                        </form>
+                                    </div>
+                                    <div class="mdui-col-md-2"></div>
+                                    <div class="mdui-col-md-1">
+                                        <button onclick="change_node()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple" >切换节点</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                     <tr>
+                            <td>路由设置
+                                <i class="mdui-icon material-icons mdui-text-color-grey-400" mdui-dialog="{target: '#routing-helper'}">info</i>
+                                <div class="mdui-dialog" id="routing-helper">
+                                    <div class="mdui-dialog-title">路由设置说明</div>
+                                    <div class="mdui-dialog-content">
+                                        <b>Global</b>：全局模式，所有流量全部通过代理<br>
+                                        <b>Whitelist</b>：白名单模式，知名国内网站和国内IP直连，其他流量走代理<br>
+                                        <b>Direct</b>：无代理模式，全部流量直连<br>
+                                    </div>
+                                    <div class="mdui-dialog-actions">
+                                        <button class="mdui-btn mdui-ripple" mdui-dialog-close="">确认</button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <form id="routing_form" action="##">
+                                        </form>
+                                    </div>
+                                    <div class="mdui-col-md-2"></div>
+                                    <div class="mdui-col-md-1">
+                                        <button onclick="change_routing()" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple" >修改路由</button>
+                                    </div>
+                                </div>
+                            </td>
+                    </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+    <p></p>
+
+
+</body>
+
+<script type="text/javascript">
+    $.get("/get_subscribe_info", function(return_data){
+        let data_list = JSON.parse(return_data);
+		let active = data_list['active']
+		let data = data_list['list'][active]
+        var node_html ='<select name="node" class="mdui-select" mdui-select>\n' +
+            '<option id="' + data_list["list"][0]["remarks"] + '" value="1">' + data_list["list"][0]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][1]["remarks"] + '" value="2">' + data_list["list"][1]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][2]["remarks"] + '" value="3">' + data_list["list"][2]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][3]["remarks"] + '" value="4">' + data_list["list"][3]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][4]["remarks"] + '" value="5">' + data_list["list"][4]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][5]["remarks"] + '" value="6">' + data_list["list"][5]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][6]["remarks"] + '" value="7">' + data_list["list"][6]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][7]["remarks"] + '" value="8">' + data_list["list"][7]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][8]["remarks"] + '" value="9">' + data_list["list"][8]["remarks"] + '</option>\n' +
+            '<option id="' + data_list["list"][9]["remarks"] + '" value="10">' + data_list["list"][9]["remarks"] + '</option>\n' +
+            '</select>'
+
+        $("#node_form").append(node_html);
+        document.getElementById(data_list["list"][active]["remarks"]).setAttribute('selected','selected');
+
+        mdui.mutation();
+
+    });
+    $.get("/get_panel_info", function(return_data){
+        let panel = JSON.parse(return_data);
+        document.getElementById('node_subscribe').setAttribute('value',panel['subscribe_url']);
+        document.getElementById('node_code').setAttribute('value',panel['subscribe_code']);
+        if (panel['subscribe_log'] === "success") {
+			document.getElementById('subscribe_log').innerHTML = '订阅更新成功！';
+        } else if (panel['subscribe_log'] === "failure") {
+			document.getElementById('subscribe_log').innerHTML = '订阅更新失败！请查检订阅网址、验证码及网络连接状态是否正确！';
+        }
+		if (panel['auto_update_subscribe'] === "open") {
+		    document.getElementById('set_auto_update').setAttribute('value','开启状态');
+        } else
+		{
+		    document.getElementById('set_auto_update').setAttribute('value','关闭状态');
+        }
+
+        var routing_html = '<select name="routing" class="mdui-select" mdui-select>\n' +
+            '<option id="Global" value="1"> Global</option>\n' +
+            '<option id="whitelist" value="2"> Whitelist </option>\n' +
+            '<option id="direct" value="3"> Direct </option>\n' +
+            '</select>'
+        $("#routing_form").append(routing_html);
+        document.getElementById(panel['routing']).setAttribute('selected','selected');
+        mdui.mutation();
+    });
+	
+</script>
+
+<script type="text/javascript">
+
+    function message(m_message) {
+        mdui.snackbar(
+            {
+                message : m_message,
+                position : "right-top"
+            }
+        )
+    }
+
+
+    function change_routing() {
+        $.get("/set_routing",$('#routing_form').serialize());
+        message("路由模式已修改");
+    }
+
+
+	function change_subscribe() {
+        let subscribe = "code=" + document.getElementById('node_code').value + "&url=" + document.getElementById('node_subscribe').value;
+		$.get("/set_subscribe",subscribe)
+                setTimeout("window.location.reload(true)",15000);
+                message("订阅正在更新，15秒后自动刷新页面")
+
+    }
+
+    function change_node() {
+        $.get("/set_subscribe_node",$('#node_form').serialize());
+        setTimeout("window.location.reload(true)",1000);
+        message("订阅服务器节点已修改");
+    }
+
+    function open_auto_update() {
+        $.get("/open_auto_update_subscribe");
+		document.getElementById('set_auto_update').setAttribute('value','开启状态');
+        message("订阅自动更新已开启！")
+    }
+
+    function stop_auto_update() {
+        $.get("/stop_auto_update_subscribe");
+		document.getElementById('set_auto_update').setAttribute('value','关闭状态');
+        message("订阅自动更新已关闭！")
+    }
+
+    function start_service() {
+        $.get("/start_service");
+        message("服务已启动")
+    }
+
+    function stop_service() {
+        $.get("/stop_service");
+        message("服务已停止")
+    }
+
+    function restart_service() {
+        $.get("/restart_service");
+        message("服务已重启")
+    }
+
+</script>
+
+</html>
