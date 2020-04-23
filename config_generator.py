@@ -16,27 +16,27 @@ def gen_client():
         "loglevel": "warning"
     },
 	"inbounds": [
-     {
-      "tag": "proxy",
-      "port": 10808,
-      "listen": "0.0.0.0",
-      "protocol": "socks",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
-      },
-      "settings": {
-        "auth": "noauth",
-        "udp": true,
-        "ip": null,
-        "address": null,
-        "clients": null
-      },
-      "streamSettings": null
-    },
+        {
+          "tag": "proxy",
+          "port": 10808,
+          "listen": "0.0.0.0",
+          "protocol": "socks",
+          "sniffing": {
+            "enabled": true,
+            "destOverride": [
+              "http",
+              "tls"
+            ]
+          },
+          "settings": {
+            "auth": "noauth",
+            "udp": true,
+            "ip": null,
+            "address": null,
+            "clients": null
+          },
+          "streamSettings": null
+        },
 		{
 			"port": 12345,
 			"protocol": "dokodemo-door",
