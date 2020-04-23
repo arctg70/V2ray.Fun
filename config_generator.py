@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+# 生成v2ray的配置
 import commands
 import json
 
