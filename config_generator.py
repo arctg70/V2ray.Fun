@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# 生成v2ray的配置
+# 生成v2ray的配置，添加socks代理端口
 import commands
 import json
 
