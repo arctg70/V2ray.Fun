@@ -40,6 +40,7 @@ if [ ${OS} == Ubuntu ] || [ ${OS} == Debian ];then
 	wget -O - "https://bootstrap.pypa.io/get-pip.py" | python
 	pip install --upgrade pip
 	pip install flask requests urllib3 Flask-BasicAuth Jinja2 requests six wheel
+    pip install Flask-APScheduler
 	pip install pyOpenSSL
 fi
 
@@ -48,6 +49,7 @@ if [ ${OS} == CentOS ];then
 	yum install python-pip python-devel socat ca-certificates openssl unzip git curl crontabs wget -y
 	pip install --upgrade pip
 	pip install flask requests urllib3 Flask-BasicAuth supervisor Jinja2 requests six wheel
+    pip install Flask-APScheduler
 	pip install pyOpenSSL
 fi
 
