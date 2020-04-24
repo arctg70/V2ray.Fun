@@ -17,5 +17,5 @@ config_generator.open_port(data['port'])
 with open("/usr/local/V2ray.Fun/v2ray.config", "w") as f:
     f.write(json.dump(data))
 
-config_generator.gen_server()
+#config_generator.gen_server()
 config_generator.gen_client()
