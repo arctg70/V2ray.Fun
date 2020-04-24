@@ -29,4 +29,4 @@
 
 
 
-> wget -N --no-check-certificate https://raw.githubusercontent.com/MassSmith/V2ray.Fun/master/install.sh && bash install.sh
+> wget -N --no-check-certificate https://raw.githubusercontent.com/arctg70/V2ray.Fun/master/install.sh && bash install.sh
