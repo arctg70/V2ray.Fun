@@ -43,7 +43,7 @@ def parseSubscribtxt(SubscribTxt):
 if __name__ == "__main__":
     #    with open("node1.txt") as f:
     #        s = f.read()
-    r = requests.get('subscrib_url_from_airport')
+    r = requests.get('https://sub.ppbox.xyz/link/ZY0LbGreSnKZKFFQ?sub=3')
     s = r.text
     vlist = parseSubscribtxt(s)
     for line in vlist:
