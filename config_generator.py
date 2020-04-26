@@ -7,6 +7,7 @@ import json
 import requests
 from requests.exceptions import ConnectTimeout
 
+
 def gen_client():
     whitelist_client_raw = """
 {
@@ -15,7 +16,7 @@ def gen_client():
         "error": "/var/log/v2ray/error.log",
         "loglevel": "warning"
     },
-	"inbounds": [
+    "inbounds": [
         {
           "tag": "proxy",
           "port": 10808,
@@ -37,26 +38,26 @@ def gen_client():
           },
           "streamSettings": null
         },
-		{
-			"port": 12345,
-			"protocol": "dokodemo-door",
-			"settings": {
-				"network": "tcp,udp",
-				"followRedirect": true
-			}
-		},
-		{
-			"tag": "dns-in",
-			"protocol": "dokodemo-door",
-			"port": 53,
-			"settings": {
-				"address": "8.8.8.8",
-				"port": 53,
-				"network": "udp",
-				"followRedirect": false
-			}
-		}
-	],
+        {
+          "port": 12345,
+          "protocol": "dokodemo-door",
+          "settings": {
+               "network": "tcp,udp",
+               "followRedirect": true
+          }
+        },
+        {
+            "tag": "dns-in",
+            "protocol": "dokodemo-door",
+            "port": 53,
+            "settings": {
+                "address": "8.8.8.8",
+                "port": 53,
+                "network": "udp",
+                "followRedirect": false
+            }
+        }
+    ],
 	"outbounds": [
 		{
 			"protocol": "vmess",
@@ -307,8 +308,6 @@ def gen_client():
 }
     """
 
-
-
     cLient_mkcp = json.loads("""
     {
                 "mtu": 1350,
@@ -323,7 +322,7 @@ def gen_client():
                 }
     }
     """)
-	
+
     cLient_ws = json.loads("""
     {
 					"connectionReuse": true,
@@ -347,20 +346,19 @@ def gen_client():
         panel_config = json.load(panel)
         config_source = panel_config['config_source']
     if panel_config['routing'] == "direct":
-         client = json.loads(direct_client_raw)
-         with open("/etc/v2ray/config.json", "w") as f:
-             f.write(json.dumps(client, indent=2))
-         return
+        client = json.loads(direct_client_raw)
+        with open("/etc/v2ray/config.json", "w") as f:
+            f.write(json.dumps(client, indent=2))
+        return
     elif panel_config['routing'] == "whitelist":
-         client = json.loads(whitelist_client_raw)
+        client = json.loads(whitelist_client_raw)
     elif panel_config['routing'] == "global":
-         client = json.loads(global_client_raw)
+        client = json.loads(global_client_raw)
 
     with open(config_source) as f:
         data_list = json.load(f)
         active = data_list['active']
         data = data_list['list'][active]
-
 
     if data['mux'] == "on":
         client['outbounds'][0]['mux']['enabled'] = True
@@ -370,8 +368,7 @@ def gen_client():
     client['outbounds'][0]['settings']['vnext'][0]['address'] = data['domain_ip']
     client['outbounds'][0]['settings']['vnext'][0]['port'] = int(data['port'])
     client['outbounds'][0]['settings']['vnext'][0]['users'][0]['id'] = data['uuid']
-    client['outbounds'][0]['settings']['vnext'][0]['users'][0]['security'] = data[
-        'encrypt']
+    client['outbounds'][0]['settings']['vnext'][0]['users'][0]['security'] = data['encrypt']
 
     if data['trans'] == "websocket":
         client['outbounds'][0]['streamSettings']['network'] = "ws"
@@ -397,9 +394,8 @@ def gen_client():
 
     with open("/etc/v2ray/config.json", "w") as f:
         f.write(json.dumps(client, indent=2))
-    #with open("/root/config.json", "w") as f:
+    # with open("/root/config.json", "w") as f:
     #    f.write(json.dumps(client, indent=2))
 
-    #with open("/usr/local/V2ray.Fun/static/config.json", "w") as f:
+    # with open("/usr/local/V2ray.Fun/static/config.json", "w") as f:
     #    f.write(json.dumps(client, indent=2))
-
