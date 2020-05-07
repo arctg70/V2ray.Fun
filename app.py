@@ -8,6 +8,7 @@ from flask import Flask, render_template, request
 from flask_basicauth import BasicAuth
 
 from config_generator import *  # noqa
+from ParseVmess import *
 
 os.chdir("/usr/local/V2ray.Fun")
 
@@ -97,9 +98,18 @@ def change_subscribe_node(value):
 
 
 def update_subscribe():
+    #   更新订阅数据
     with open("panel.config") as panel_config:
         panel = json.load(panel_config)
-    cmd = "bash subscribe.sh " + \
+#    print(panel['subscribe_url'])
+    ParseVmess.let_update_subscribe(panel['subscribe_url'])
+
+#    commands.getoutput('mv subscribe.list subscribe.list.bak')
+#    with open("subscrib.list", "w") as f:
+#        json.dump(subscrib_list, f, indent=2)
+#
+
+    """ cmd = "bash subscribe.sh " + \
         panel["subscribe_url"] + " " + panel["subscribe_code"]
     output = commands.getoutput(cmd)
     success_wget = output.find('saved')
@@ -109,6 +119,7 @@ def update_subscribe():
     else:
         change_panel("subscribe_log", "failure")
         commands.getoutput('mv subscribe.list.bak subscribe.list')
+    """
 
 
 def update_v2ray():
@@ -283,6 +294,28 @@ def set_domain_ip():
 def set_remark():
     items = request.args.to_dict()
     change_config("remarks", items['setremark'])
+    # gen_server()
+    gen_client()
+    restart_service()
+    return "OK"
+
+
+@app.route('/set_host', methods=['GET', 'POST'])
+def set_host():
+    items = request.args.to_dict()
+    change_config("host", items['sethost'])
+    # gen_server()
+    gen_client()
+    restart_service()
+    return "OK"
+
+
+@app.route('/set_alterId', methods=['GET', 'POST'])
+def set_alterId():
+    items = request.args.to_dict()
+    alterId = items['setalterId']
+    print(alterId)
+    change_config("alterId", items['setalterId'])
     # gen_server()
     gen_client()
     restart_service()

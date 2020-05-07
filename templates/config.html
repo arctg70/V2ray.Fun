@@ -144,10 +144,9 @@
                                                 onclick="change_domain_ip()">修改地址</button>
                                     </div>
                                 </div>
-
-
                             </td>
                         </tr>
+
                         <tr>
                             <td>协议类型</td>
                             <td>
@@ -181,6 +180,7 @@
 
                             </td>
                         </tr>
+
                         <tr class="mtproto-config">
                             <td>用户秘钥</td>
                             <td>
@@ -196,6 +196,7 @@
                                 </div>
                             </td>
                         </tr>
+
                         <tr class="vmess-config">
                             <td>UUID</td>
                             <td>
@@ -212,6 +213,37 @@
                                             <i class="mdui-icon material-icons">autorenew</i>
                                         </button>
                                     </div>----->
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>伪装域名</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-4" style="margin: 3px">
+                                        <input id="host" class="mdui-textfield-input" type="text" placeholder="host" value=""/>
+                                    </div>
+                                    <div class="mdui-col-md-2"></div>
+                                    <div class="mdui-col-md-1">
+                                        <button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple"
+                                                onclick="change_host()">修改伪装域名</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="vmess-config">
+                            <td>alterId</td>
+                            <td>
+                                <div class="mdui-row">
+                                    <div class="mdui-col-md-6">
+                                        <input id="alterId" class="mdui-textfield-input" type="text"  value="" />
+                                    </div>
+                                    <div class="mdui-col-md-1">
+                                        <button class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-theme-accent mdui-ripple"
+                                                onclick="change_alterId()">修改alterId</button>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -413,6 +445,8 @@
         document.getElementById('uuid').setAttribute('value',data["uuid"]);
         document.getElementById('port').setAttribute('value',data["port"]);
         document.getElementById('domain_ip').setAttribute('value',data["domain_ip"]);
+        document.getElementById('host').setAttribute('value',data["host"]);
+        document.getElementById('alterId').setAttribute('value',data["alterId"]);
         document.getElementById('ws_input_domain').setAttribute('value',data["domain_ip"]);
         document.getElementById('wspath').setAttribute('value',data["wspath"]);
         var protocol_form = '<select name="protocol" class="mdui-select" mdui-select>\n' +
@@ -570,6 +604,29 @@ function change_set_uuid() {
                 message("备注已修改")
 
     }
+
+    function change_host() {
+        let host = document.getElementById('host').value;
+        $.get("/set_host",{
+                    sethost : host
+                })
+                setTimeout("window.location.reload(true)",1000);
+                message("伪装域名已修改")
+
+    }
+
+
+    function change_alterId() {
+        let alterId = document.getElementById('alterId').value;
+        $.get("/set_alterId",{
+                    setalterId : alterId
+                })
+                setTimeout("window.location.reload(true)",1000);
+                message("alterId已修改")
+
+    }
+
+
 
 	function change_domain_ip() {
         let domainip = document.getElementById('domain_ip').value;

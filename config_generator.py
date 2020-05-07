@@ -325,9 +325,18 @@ def gen_client():
 
     cLient_ws = json.loads("""
     {
-					"connectionReuse": true,
-					"path": null,
-					"headers": null
+				"connectionReuse": true,
+				"path": null,
+				"headers": {
+                    "Host": ""
+                }
+	}
+    """)
+
+    cLient_tls = json.loads("""
+    {
+        "allowInsecure": true,
+        "serverName": ""
 	}
     """)
 
@@ -369,10 +378,12 @@ def gen_client():
     client['outbounds'][0]['settings']['vnext'][0]['port'] = int(data['port'])
     client['outbounds'][0]['settings']['vnext'][0]['users'][0]['id'] = data['uuid']
     client['outbounds'][0]['settings']['vnext'][0]['users'][0]['security'] = data['encrypt']
+    client['outbounds'][0]['settings']['vnext'][0]['users'][0]['alterId'] = int(data['alterId'])
 
     if data['trans'] == "websocket":
         client['outbounds'][0]['streamSettings']['network'] = "ws"
         cLient_ws['path'] = data['wspath']
+        cLient_ws['headers']['Host'] = data['host']
         client['outbounds'][0]['streamSettings']['wsSettings'] = cLient_ws
 
     elif data['trans'].startswith("mkcp"):
@@ -391,6 +402,11 @@ def gen_client():
 
     if data['tls'] == "on":
         client['outbounds'][0]['streamSettings']['security'] = "tls"
+        cLient_tls['serverName'] = data['host']
+        client['outbounds'][0]['streamSettings']['tlsSettings'] = cLient_tls
+#        client['outbounds'][0]['streamSettings']['tlsSettings'][0]['allowInsecure'] = yes
+
+
 
     with open("/etc/v2ray/config.json", "w") as f:
         f.write(json.dumps(client, indent=2))

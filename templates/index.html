@@ -166,7 +166,14 @@
 
                         </td>
                     </tr>
-  
+                    <tr>
+                        <td>伪装域名</td>
+                        <td id="host"></td>
+                    </tr>
+                    <tr>
+                        <td>alterId</td>
+                        <td id="alterId"></td>
+                    </tr>
 
                     <tr class="vmess-info">
                         <td>加密方式</td>
@@ -296,17 +303,16 @@
             document.getElementById('secret').innerHTML = data['secret']
         }
         document.getElementById('remarks').innerHTML = data["remarks"];
-
-
-
+        document.getElementById('host').innerHTML = data["host"];
+        document.getElementById('alterId').innerHTML = data["alterId"];
         document.getElementById('ip').innerHTML = data["domain_ip"];
-       
+
         document.getElementById('port').innerHTML = data["port"];
-		
+
 		if(data["trans"].startsWith("websocket"))
 		{
 		document.getElementById('trans').innerHTML = vmess_websocket;
-		
+
 		}
         else
 		{
