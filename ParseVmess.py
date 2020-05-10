@@ -92,7 +92,7 @@ def let_update_subscribe(subscribe_url):
         config_from_subscribe["wspath"] = vmess['path']
         config_from_subscribe["secret"] = ""
         config_from_subscribe["routing"] = 'whitelist'
-        config_from_subscribe["remarks"] = vmess['add']
+        config_from_subscribe["remarks"] = vmess['ps']
         config_from_subscribe["protocol"] = 'vmess'
         if vmess['net'] == "ws":
             config_from_subscribe["trans"] = "websocket"
