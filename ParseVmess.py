@@ -49,8 +49,8 @@ def get_vmess_json(subscrib_url):
     for line in vmess_url_list:
         if line:
             vmess_json = parse(line)
-            if vmess_json['class'] == 3:
-                vmess_json_list.append(vmess_json)
+#            if vmess_json['class'] == 3:
+            vmess_json_list.append(vmess_json)
     print(vmess_json_list)
     return vmess_json_list
 
@@ -58,32 +58,57 @@ def get_vmess_json(subscrib_url):
 def let_update_subscribe(subscribe_url):
     #   更新订阅数据
     vmess_json_list = get_vmess_json(subscribe_url)
-    with open("subscribe.list") as f:
-        subscrib_list = json.load(f)
+#    with open("subscribe.list") as f:
+    subscrib_list = json.loads("""{"active":0,"max":0,"list":[]}""")
+
     i = 0
     for vmess in vmess_json_list:
+        config_from_subscribe = json.loads("""
+        {
+        "tls": "",
+        "status": "",
+        "encrypt": "",
+        "uuid": "",
+        "domain_ip": "",
+        "secret": "",
+        "mux": "",
+        "port": "",
+        "host": "",
+        "routing": "",
+        "remarks": "",
+        "protocol": "",
+        "trans": "",
+        "wspath": "",
+        "alterId": ""
+        }
+        """)
         if vmess['tls'] == "tls":
-            subscrib_list['list'][i]["tls"] = "on"
-        subscrib_list["list"][i]["status"] = "on"
-        subscrib_list["list"][i]["encrypt"] = 'auto'
-        subscrib_list["list"][i]["uuid"] = vmess['id']
-        subscrib_list["list"][i]["domain_ip"] = vmess['add']
-        subscrib_list["list"][i]["mux"] = 'on'
-        subscrib_list["list"][i]["wspath"] = vmess['path']
-        #   subscrib_list['list'][i]["secret"]="44369f5382d51e6fcc4c254d1fc43820"
-        #   subscrib_list['list'][i]["routing"] = 'whitelist'
-        subscrib_list["list"][i]["remarks"] = vmess['add']
+            config_from_subscribe["tls"] = "on"
+        config_from_subscribe["status"] = "on"
+        config_from_subscribe["encrypt"] = 'auto'
+        config_from_subscribe["uuid"] = vmess['id']
+        config_from_subscribe["domain_ip"] = vmess['add']
+        config_from_subscribe["mux"] = 'on'
+        config_from_subscribe["wspath"] = vmess['path']
+        config_from_subscribe["secret"] = ""
+        config_from_subscribe["routing"] = 'whitelist'
+        config_from_subscribe["remarks"] = vmess['add']
+        config_from_subscribe["protocol"] = 'vmess'
         if vmess['net'] == "ws":
-            subscrib_list["list"][i]["trans"] = "websocket"
+            config_from_subscribe["trans"] = "websocket"
         elif vmess['net'] == "tcp":
-            subscrib_list["list"][i]["trans"] = "tcp"
+            config_from_subscribe["trans"] = "tcp"
         else:
-            subscrib_list["list"][i]["trans"] = "mkcp"
-        subscrib_list["list"][i]["host"] = vmess['host']
-        subscrib_list["list"][i]["alterId"] = str(vmess['aid'])
-        subscrib_list["list"][i]["port"] = str(vmess['port'])
+            config_from_subscribe["trans"] = "mkcp"
+        config_from_subscribe["host"] = vmess['host']
+        config_from_subscribe["alterId"] = str(vmess['aid'])
+        config_from_subscribe["port"] = str(vmess['port'])
+#        print(config_from_subscribe)
+        subscrib_list["list"].append(config_from_subscribe)
         i = i + 1
-    print(subscrib_list)
+    subscrib_list["max"] = i - 1
+    subscrib_list["active"] = 0
+#    print(subscrib_list)
 #    commands.getoutput('mv subscribe.list subscribe.list.bak')
     with open("subscribe.list", "w") as f:
         f.write(json.dumps(subscrib_list, indent=2))

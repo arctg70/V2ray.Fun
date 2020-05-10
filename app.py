@@ -419,29 +419,34 @@ def set_subscribe():
 @app.route('/set_subscribe_node', methods=['GET', 'POST'])
 def set_subscribe_node():
     items = request.args.to_dict()
-    node = str(items['node'])
-    if node == "1":
-        change_subscribe_node(0)
-    elif node == "2":
-        change_subscribe_node(1)
-    elif node == "3":
-        change_subscribe_node(2)
-    elif node == "4":
-        change_subscribe_node(3)
-    elif node == "5":
-        change_subscribe_node(4)
-    elif node == "6":
-        change_subscribe_node(5)
-    elif node == "7":
-        change_subscribe_node(6)
-    elif node == "8":
-        change_subscribe_node(7)
-    elif node == "9":
-        change_subscribe_node(8)
-    elif node == "10":
-        change_subscribe_node(9)
-    else:
-        change_subscribe_node(0)
+
+    node = int(items['node']) - 1
+    change_subscribe_node(node)
+
+#    node = str(items['node'])
+#    if node == "1":
+#        change_subscribe_node(0)
+#    elif node == "2":
+#        change_subscribe_node(1)
+#    elif node == "3":
+#        change_subscribe_node(2)
+#    elif node == "4":
+#        change_subscribe_node(3)
+#    elif node == "5":
+#        change_subscribe_node(4)
+#    elif node == "6":
+#        change_subscribe_node(5)
+#    elif node == "7":
+#        change_subscribe_node(6)
+#    elif node == "8":
+#        change_subscribe_node(7)
+#    elif node == "9":
+#        change_subscribe_node(8)
+#    elif node == "10":
+#        change_subscribe_node(9)
+#    else:
+#        change_subscribe_node(0)
+
     change_panel("config_source", "subscribe.list")
     # gen_server()
     gen_client()

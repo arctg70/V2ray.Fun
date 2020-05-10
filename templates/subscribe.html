@@ -225,20 +225,19 @@
 <script type="text/javascript">
     $.get("/get_subscribe_info", function(return_data){
         let data_list = JSON.parse(return_data);
-		let active = data_list['active']
-		let data = data_list['list'][active]
-        var node_html ='<select name="node" class="mdui-select" mdui-select>\n' +
-            '<option id="' + data_list["list"][0]["remarks"] + '" value="1">' + data_list["list"][0]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][1]["remarks"] + '" value="2">' + data_list["list"][1]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][2]["remarks"] + '" value="3">' + data_list["list"][2]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][3]["remarks"] + '" value="4">' + data_list["list"][3]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][4]["remarks"] + '" value="5">' + data_list["list"][4]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][5]["remarks"] + '" value="6">' + data_list["list"][5]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][6]["remarks"] + '" value="7">' + data_list["list"][6]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][7]["remarks"] + '" value="8">' + data_list["list"][7]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][8]["remarks"] + '" value="9">' + data_list["list"][8]["remarks"] + '</option>\n' +
-            '<option id="' + data_list["list"][9]["remarks"] + '" value="10">' + data_list["list"][9]["remarks"] + '</option>\n' +
-            '</select>'
+		let active = data_list['active'];
+        let max = data_list['max'];
+		let data = data_list['list'][active];
+
+        var node_html ='<select name="node" class="mdui-select" mdui-select>\n';
+        var j=0;
+        var remarks;
+        for (var i = 0 ; i < max+1 ; i++){
+            j = i+1;
+            remarks = data_list["list"][i]["remarks"]
+            node_html += '<option id="' + data_list["list"][i]["remarks"] + '" value="' + j + '">' + data_list["list"][i]["remarks"] + '</option>\n'
+        }
+        node_html += '</select>';
 
         $("#node_form").append(node_html);
         document.getElementById(data_list["list"][active]["remarks"]).setAttribute('selected','selected');
@@ -297,7 +296,7 @@
 		$.get("/set_subscribe",subscribe)
                 setTimeout("window.location.reload(true)",15000);
                 message("订阅正在更新，15秒后自动刷新页面")
-
+ 
     }
 
     function change_node() {
