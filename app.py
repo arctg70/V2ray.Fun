@@ -102,7 +102,8 @@ def update_subscribe():
     with open("panel.config") as panel_config:
         panel = json.load(panel_config)
 #    print(panel['subscribe_url'])
-    ParseVmess.let_update_subscribe(panel['subscribe_url'])
+    if ParseVmess.let_update_subscribe(panel['subscribe_url']):
+        change_panel("subscribe_log", "success")
 
 #    commands.getoutput('mv subscribe.list subscribe.list.bak')
 #    with open("subscrib.list", "w") as f:

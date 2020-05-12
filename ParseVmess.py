@@ -109,9 +109,10 @@ def let_update_subscribe(subscribe_url):
     subscrib_list["max"] = i - 1
     subscrib_list["active"] = 0
 #    print(subscrib_list)
-#    commands.getoutput('mv subscribe.list subscribe.list.bak')
+    commands.getoutput('mv subscribe.list subscribe.list.bak')
     with open("subscribe.list", "w") as f:
         f.write(json.dumps(subscrib_list, indent=2))
+    return True
 
 
 if __name__ == "__main__":
