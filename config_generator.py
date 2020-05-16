@@ -1,11 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # 生成v2ray的配置，添加socks代理端口
-import commands
-import json
 
-import requests
-from requests.exceptions import ConnectTimeout
+import json
 
 
 def gen_client():
@@ -15,36 +12,36 @@ def gen_client():
         "access": "/var/log/v2ray/access.log",
         "error": "/var/log/v2ray/error.log",
         "loglevel": "warning"
-    },
+        },
     "inbounds": [
         {
-          "tag": "proxy",
-          "port": 10808,
-          "listen": "0.0.0.0",
-          "protocol": "socks",
-          "sniffing": {
-            "enabled": true,
-            "destOverride": [
-              "http",
-              "tls"
-            ]
-          },
-          "settings": {
-            "auth": "noauth",
-            "udp": true,
-            "ip": null,
-            "address": null,
-            "clients": null
-          },
-          "streamSettings": null
+            "tag": "proxy",
+            "port": 10808,
+            "listen": "0.0.0.0",
+            "protocol": "socks",
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                    ]
+                },
+            "settings": {
+                "auth": "noauth",
+                "udp": true,
+                "ip": null,
+                "address": null,
+                "clients": null
+                },
+            "streamSettings": null
         },
         {
-          "port": 12345,
-          "protocol": "dokodemo-door",
-          "settings": {
-               "network": "tcp,udp",
-               "followRedirect": true
-          }
+            "port": 12345,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "network": "tcp,udp",
+                "followRedirect": true
+                }
         },
         {
             "tag": "dns-in",
@@ -55,107 +52,107 @@ def gen_client():
                 "port": 53,
                 "network": "udp",
                 "followRedirect": false
-            }
+                }
         }
-    ],
-	"outbounds": [
-		{
-			"protocol": "vmess",
-			"settings": {
-				"vnext": [
-					{
-						"address": "",
-						"port": 39885,
-						"users": [
-							{
-								"id": "475161c6-837c-4318-a6bd-e7d414697de5",
-								"alterId": 64,
-								"security": "auto"
-							}
-						]
-					}
-				]
-			},
-			"streamSettings": {
-				"network": "tcp",
-				"security": "none",
-				"tlsSettings": null,
-				"tcpSettings": null,
-				"kcpSettings": null,
-				"wsSettings": null,
-				"httpSettings": null,
-				"quicSettings": null,
-				"sockopt": {
-					"mark": 255
-				}
-			},
-			"mux": {
-				"enabled": false
-			}
-		},
-		{
-			"tag": "direct",
-			"protocol": "freedom",
-			"settings": {},
-			"streamSettings": {
-				"sockopt": {
-					"mark": 255
-				}
-			}
-		},
-		{
-			"protocol": "dns",
-			"tag": "dns-out"
-		}
-	],
-	"dns": {
-		"servers": [
-			"8.8.8.8",
-			"8.8.4.4",
-			{
-				"address": "114.114.114.114",
-				"port": 53,
-				"domains": [
-					"geosite:cn",
-					"geosite:speedtest"
-				]
-			}
-		]
-	},
-	"routing": {
-		"domainStrategy": "IPIfNonMatch",
-		"rules": [
-			{
-				"type": "field",
-				"inboundTag": [
-					"dns-in"
-				],
-				"outboundTag": "dns-out"
-			},
-			{
-				"type": "field",
-				"outboundTag": "direct",
-				"ip": [
-					"geoip:private"
-				]
-			},
-			{
-				"type": "field",
-				"outboundTag": "direct",
-				"ip": [
-					"geoip:cn"
-				]
-			},
-			{
-				"type": "field",
-				"outboundTag": "direct",
-				"domain": [
-					"geosite:cn",
-					"geosite:speedtest"
-				]
-			}
-		]
-	}
+        ],
+    "outbounds": [
+       {
+           "protocol": "vmess",
+           "settings": {
+               "vnext": [
+                   {
+                   "address": "",
+                   "port": 39885,
+                   "users": [
+                       {
+                       "id": "475161c6-837c-4318-a6bd-e7d414697de5",
+                       "alterId": 64,
+                       "security": "auto"
+                       }
+                       ]
+                    }
+                    ]
+                },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "none",
+                "tlsSettings": null,
+                "tcpSettings": null,
+                "kcpSettings": null,
+                "wsSettings": null,
+                "httpSettings": null,
+                "quicSettings": null,
+                "sockopt": {
+                    "mark": 255
+                    }
+                },
+            "mux": {
+                "enabled": false
+                }
+        },
+        {
+            "tag": "direct",
+            "protocol": "freedom",
+            "settings": {},
+            "streamSettings": {
+                "sockopt": {
+                    "mark": 255
+                    }
+                }
+        },
+        {
+            "protocol": "dns",
+            "tag": "dns-out"
+        }
+        ],
+    "dns": {
+        "servers": [
+            "8.8.8.8",
+            "8.8.4.4",
+            {
+                "address": "114.114.114.114",
+                "port": 53,
+                "domains": [
+                    "geosite:cn",
+                    "geosite:speedtest"
+                    ]
+            }
+            ]
+        },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "type": "field",
+                "inboundTag": [
+                    "dns-in"
+                    ],
+                "outboundTag": "dns-out"
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "ip": [
+                    "geoip:private"
+                    ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "ip": [
+                    "geoip:cn"
+                    ]
+            },
+            {
+                "type": "field",
+                "outboundTag": "direct",
+                "domain": [
+                    "geosite:cn",
+                    "geosite:speedtest"
+                    ]
+            }
+            ]
+        }
 }
     """
 
@@ -166,7 +163,7 @@ def gen_client():
         "error": "/var/log/v2ray/error.log",
         "loglevel": "warning"
     },
-	"inbounds": [
+    "inbounds": [
       {
       "tag": "proxy",
       "port": 10808,
@@ -325,19 +322,19 @@ def gen_client():
 
     cLient_ws = json.loads("""
     {
-				"connectionReuse": true,
-				"path": null,
-				"headers": {
-                    "Host": ""
-                }
-	}
+        "connectionReuse": true,
+        "path": null,
+        "headers": {
+            "Host": ""
+            }
+    }
     """)
 
     cLient_tls = json.loads("""
     {
         "allowInsecure": true,
         "serverName": ""
-	}
+    }
     """)
 
     mux_enable = json.loads("""
@@ -378,7 +375,8 @@ def gen_client():
     client['outbounds'][0]['settings']['vnext'][0]['port'] = int(data['port'])
     client['outbounds'][0]['settings']['vnext'][0]['users'][0]['id'] = data['uuid']
     client['outbounds'][0]['settings']['vnext'][0]['users'][0]['security'] = data['encrypt']
-    client['outbounds'][0]['settings']['vnext'][0]['users'][0]['alterId'] = int(data['alterId'])
+    client['outbounds'][0]['settings']['vnext'][0]['users'][0]['alterId'] = int(
+        data['alterId'])
 
     if data['trans'] == "websocket":
         client['outbounds'][0]['streamSettings']['network'] = "ws"
@@ -404,9 +402,6 @@ def gen_client():
         client['outbounds'][0]['streamSettings']['security'] = "tls"
         cLient_tls['serverName'] = data['host']
         client['outbounds'][0]['streamSettings']['tlsSettings'] = cLient_tls
-#        client['outbounds'][0]['streamSettings']['tlsSettings'][0]['allowInsecure'] = yes
-
-
 
     with open("/etc/v2ray/config.json", "w") as f:
         f.write(json.dumps(client, indent=2))

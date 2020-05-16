@@ -1,20 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+import commands
 import base64
 import json
 import requests
-
-
-# def base64_decode(base64_encode_str):
-#    """ 利用 base64.urlsafe_b64decode 对字符串解码 python2.7下会有问题"""
-#    if base64_encode_str:
-#        need_padding = len(base64_encode_str) % 4
-#        if need_padding != 0:
-#            missing_padding = 4 - need_padding
-#            base64_encode_str += '=' * missing_padding
-#        return base64.urlsafe_b64decode(base64_encode_str).decode('utf-8')
-#    return base64_encode_str
-#    return base64.b64decode(base64_encode_str)
 
 
 def parse(vmessUrl):
